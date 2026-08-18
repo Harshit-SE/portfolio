@@ -1,0 +1,365 @@
+/* ============================================================
+   GOOGLE FONTS — must be first
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&family=MedievalSharp&family=IM+Fell+English:ital@0;1&display=swap');
+
+@import "tailwindcss";
+
+/* ============================================================
+   CSS CUSTOM PROPERTIES — THREE MODE DESIGN TOKENS
+   ============================================================ */
+:root {
+  --transition-slow: all 0.6s cubic-bezier(0.16,1,0.3,1);
+  --transition-med:  all 0.35s cubic-bezier(0.16,1,0.3,1);
+  --transition-fast: all 0.2s ease;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   DEV MODE — Super 30 Cinematic Gold + Deep Black
+   ───────────────────────────────────────────────────────────── */
+[data-mode="dev"] {
+  --bg-primary:      #050400;
+  --bg-secondary:    #0a0800;
+  --bg-card:         rgba(255,200,50,0.03);
+  --bg-card-hover:   rgba(255,200,50,0.07);
+  --gold-bright:     #FFD700;
+  --gold-mid:        #D4A017;
+  --gold-dim:        #8B6914;
+  --gold-glow:       rgba(255,215,0,0.15);
+  --gold-glow-soft:  rgba(255,215,0,0.06);
+  --text-primary:    #F5E6B0;
+  --text-secondary:  #A08840;
+  --text-muted:      #4A3D1A;
+  --border-main:     rgba(255,215,0,0.18);
+  --border-bright:   rgba(255,215,0,0.5);
+  --accent:          #FFD700;
+  --accent2:         #FF8C00;
+  --cursor-glow:     rgba(255,215,0,0.07);
+  --scanline-color:  rgba(0,0,0,0.4);
+  --font-display:    'Cinzel', serif;
+  --font-mono:       'Share Tech Mono', monospace;
+  --font-body:       'Rajdhani', sans-serif;
+  --font-hero:       'Cinzel', serif;
+  --card-radius:     4px;
+  --nav-bg:          rgba(5,4,0,0.88);
+  --btn-bg:          linear-gradient(135deg,#D4A017,#FFD700,#D4A017);
+  --btn-text:        #050400;
+  --shadow-glow:     0 0 30px rgba(255,215,0,0.1), 0 0 80px rgba(255,215,0,0.04);
+  --timeline-line:   linear-gradient(to bottom,#FFD700,#8B6914,transparent);
+  --pill-bg:         rgba(255,215,0,0.1);
+  --pill-border:     rgba(255,215,0,0.3);
+  --pill-text:       #FFD700;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   GAME MODE — Navy Blue / Cyan Arcade
+   ───────────────────────────────────────────────────────────── */
+[data-mode="game"] {
+  --bg-primary:      #010510;
+  --bg-secondary:    #010916;
+  --bg-card:         rgba(0,200,255,0.03);
+  --bg-card-hover:   rgba(0,200,255,0.07);
+  --gold-bright:     #00F5FF;
+  --gold-mid:        #0099CC;
+  --gold-dim:        #004466;
+  --gold-glow:       rgba(0,245,255,0.15);
+  --gold-glow-soft:  rgba(0,100,200,0.07);
+  --text-primary:    #B0E8FF;
+  --text-secondary:  #3A7A99;
+  --text-muted:      #1A3A4A;
+  --border-main:     rgba(0,245,255,0.16);
+  --border-bright:   rgba(0,245,255,0.48);
+  --accent:          #00F5FF;
+  --accent2:         #7B2FBE;
+  --cursor-glow:     rgba(0,245,255,0.05);
+  --scanline-color:  rgba(0,50,100,0.25);
+  --font-display:    'Orbitron', sans-serif;
+  --font-mono:       'Share Tech Mono', monospace;
+  --font-body:       'Rajdhani', sans-serif;
+  --font-hero:       'Orbitron', sans-serif;
+  --card-radius:     2px;
+  --nav-bg:          rgba(1,5,16,0.92);
+  --btn-bg:          linear-gradient(135deg,#005599,#00F5FF,#005599);
+  --btn-text:        #010510;
+  --shadow-glow:     0 0 30px rgba(0,245,255,0.1), 0 0 80px rgba(0,100,200,0.05);
+  --timeline-line:   linear-gradient(to bottom,#00F5FF,#004466,transparent);
+  --pill-bg:         rgba(0,245,255,0.08);
+  --pill-border:     rgba(0,245,255,0.3);
+  --pill-text:       #00F5FF;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   RUNES MODE — GOW Ragnarök + Elden Ring Soulsborne Aesthetic
+   Palette: ash black, ancient stone, runic silver, ember orange,
+            blessed gold, blood red accent
+   ───────────────────────────────────────────────────────────── */
+[data-mode="runes"] {
+  --bg-primary:      #0c0a08;
+  --bg-secondary:    #110e0b;
+  --bg-card:         rgba(180,140,80,0.04);
+  --bg-card-hover:   rgba(180,140,80,0.09);
+
+  /* Core rune palette */
+  --gold-bright:     #C8A96E;   /* ancient gold parchment */
+  --gold-mid:        #8B6914;   /* worn bronze */
+  --gold-dim:        #4A3510;   /* dark stone */
+  --gold-glow:       rgba(200,169,110,0.18);
+  --gold-glow-soft:  rgba(200,169,110,0.06);
+
+  /* Ember / blood accents */
+  --rune-ember:      #E05A1A;   /* GOW axe ember */
+  --rune-blood:      #8B1A1A;   /* Elden Ring red */
+  --rune-silver:     #9BA8B4;   /* rune engraving */
+  --rune-mist:       rgba(200,169,110,0.07);
+
+  --text-primary:    #E8DCC8;   /* aged parchment */
+  --text-secondary:  #8A7A5A;   /* worn stone */
+  --text-muted:      #3D3020;   /* deep shadow */
+
+  --border-main:     rgba(200,169,110,0.2);
+  --border-bright:   rgba(200,169,110,0.55);
+  --border-rune:     rgba(224,90,26,0.3);   /* ember border */
+
+  --accent:          #C8A96E;
+  --accent2:         #E05A1A;
+
+  --cursor-glow:     rgba(200,169,110,0.06);
+  --scanline-color:  rgba(0,0,0,0.55);
+
+  --font-display:    'Cinzel Decorative', 'Cinzel', serif;
+  --font-mono:       'IM Fell English', serif;
+  --font-body:       'Cinzel', serif;
+  --font-hero:       'Cinzel Decorative', serif;
+
+  --card-radius:     0px;   /* Elden Ring: no rounded corners */
+  --nav-bg:          rgba(12,10,8,0.94);
+  --btn-bg:          linear-gradient(135deg,#4A3510,#C8A96E,#4A3510);
+  --btn-text:        #0c0a08;
+  --shadow-glow:     0 0 40px rgba(200,169,110,0.12), 0 0 100px rgba(200,169,110,0.04);
+  --shadow-ember:    0 0 30px rgba(224,90,26,0.2);
+  --timeline-line:   linear-gradient(to bottom,#C8A96E,#4A3510,transparent);
+  --pill-bg:         rgba(200,169,110,0.08);
+  --pill-border:     rgba(200,169,110,0.35);
+  --pill-text:       #C8A96E;
+
+  /* GOW rune menu specific */
+  --menu-divider:    rgba(200,169,110,0.25);
+  --stat-bar-bg:     rgba(255,255,255,0.06);
+  --stat-bar-fill:   linear-gradient(90deg,#8B6914,#C8A96E);
+  --rune-circle-bg:  radial-gradient(circle,rgba(200,169,110,0.1) 0%,transparent 70%);
+}
+
+/* ============================================================
+   RESET + BASE
+   ============================================================ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  transition: background-color 0.6s ease, color 0.4s ease;
+}
+::selection { background: var(--gold-glow); color: var(--gold-bright); }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--gold-mid); border-radius: 2px; }
+
+/* ============================================================
+   SCANLINES
+   ============================================================ */
+body::before {
+  content:'';
+  position:fixed; inset:0; z-index:9999; pointer-events:none;
+  background:repeating-linear-gradient(0deg, var(--scanline-color) 0px, transparent 1px, transparent 3px);
+  opacity:0; transition:opacity 0.5s;
+}
+[data-mode="dev"]   body::before { opacity: 0.16; }
+[data-mode="game"]  body::before { opacity: 0.07; }
+[data-mode="runes"] body::before { opacity: 0.30; }
+
+/* ============================================================
+   RUNES MODE — Vignette border (Elden Ring border panels)
+   ============================================================ */
+[data-mode="runes"] body::after {
+  content:'';
+  position:fixed; inset:0; z-index:9998; pointer-events:none;
+  background:
+    linear-gradient(to right,  rgba(0,0,0,0.5) 0%,  transparent 6%,  transparent 94%,  rgba(0,0,0,0.5) 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,  transparent 8%,  transparent 92%,  rgba(0,0,0,0.4) 100%);
+}
+
+/* ============================================================
+   UTILITY
+   ============================================================ */
+.font-display  { font-family: var(--font-display); }
+.font-mono     { font-family: var(--font-mono); }
+.font-body     { font-family: var(--font-body); }
+.font-hero     { font-family: var(--font-hero); }
+.text-accent   { color: var(--gold-bright); }
+
+.eyebrow-line {
+  height:1px; width:48px;
+  background:linear-gradient(to right, var(--gold-bright), transparent);
+}
+[data-mode="runes"] .eyebrow-line {
+  background:linear-gradient(to right, var(--rune-ember, #E05A1A), var(--gold-bright), transparent);
+  height:2px;
+}
+
+.card-glow-overlay {
+  position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(135deg, var(--gold-glow-soft), transparent 60%);
+  opacity:0; transition:opacity 0.35s;
+  border-radius:var(--card-radius);
+}
+.group:hover .card-glow-overlay { opacity:1; }
+
+.mode-pill {
+  background:var(--pill-bg);
+  border:1px solid var(--pill-border);
+  color:var(--pill-text);
+}
+.profile-dropdown-panel {
+  background:var(--bg-secondary);
+  border:1px solid var(--border-bright);
+  box-shadow:var(--shadow-glow), 0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal {
+  opacity:0; transform:translateY(28px);
+  transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.revealed { opacity:1; transform:none; }
+.delay-1 { transition-delay:0.08s; }
+.delay-2 { transition-delay:0.16s; }
+.delay-3 { transition-delay:0.24s; }
+.delay-4 { transition-delay:0.32s; }
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes goldShimmer {
+  0%   { background-position:0%; }
+  100% { background-position:100%; }
+}
+.shimmer-text {
+  background:linear-gradient(135deg, var(--gold-dim) 0%, var(--gold-bright) 40%, var(--gold-mid) 70%, var(--gold-bright) 100%);
+  background-size:300%;
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  animation:goldShimmer 4s ease-in-out infinite alternate;
+  filter:drop-shadow(0 0 28px var(--gold-glow));
+}
+
+@keyframes pulseDot {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%     { opacity:0.3; transform:scale(1.6); }
+}
+.pulse-dot { animation:pulseDot 2s ease-in-out infinite; }
+
+@keyframes blobFloat {
+  0%,100% { transform:translate(0,0) scale(1); }
+  33%     { transform:translate(28px,-18px) scale(1.04); }
+  66%     { transform:translate(-18px,14px) scale(0.97); }
+}
+.blob-float-1 { animation:blobFloat 12s ease-in-out infinite; }
+.blob-float-2 { animation:blobFloat 10s ease-in-out infinite reverse; }
+.blob-float-3 { animation:blobFloat 15s ease-in-out infinite 2s; }
+
+@keyframes scrollBounce {
+  0%,100% { transform:translateX(-50%) translateY(0); }
+  50%     { transform:translateX(-50%) translateY(-6px); }
+}
+.scroll-bounce { animation:scrollBounce 2.5s ease-in-out infinite; }
+
+/* ─── RUNES MODE SPECIFIC ANIMATIONS ─── */
+@keyframes runeFlicker {
+  0%,100% { opacity:1; text-shadow:0 0 20px rgba(200,169,110,0.6), 0 0 60px rgba(200,169,110,0.2); }
+  48%     { opacity:0.92; text-shadow:0 0 10px rgba(200,169,110,0.3); }
+  50%     { opacity:1;   text-shadow:0 0 30px rgba(200,169,110,0.8), 0 0 80px rgba(200,169,110,0.3); }
+}
+.rune-flicker { animation:runeFlicker 5s ease-in-out infinite; }
+
+@keyframes emberPulse {
+  0%,100% { box-shadow:0 0 12px rgba(224,90,26,0.3), inset 0 0 8px rgba(224,90,26,0.1); }
+  50%     { box-shadow:0 0 24px rgba(224,90,26,0.5), inset 0 0 16px rgba(224,90,26,0.15); }
+}
+.ember-pulse { animation:emberPulse 3s ease-in-out infinite; }
+
+@keyframes runeReveal {
+  0%   { clip-path:inset(0 100% 0 0); opacity:0; }
+  100% { clip-path:inset(0 0% 0 0);   opacity:1; }
+}
+.rune-reveal { animation:runeReveal 1.2s cubic-bezier(0.16,1,0.3,1) both; }
+
+@keyframes statFill {
+  from { width:0%; }
+}
+
+/* Rune corner decoration */
+.rune-corner {
+  position:absolute;
+  width:14px; height:14px;
+  border-color:var(--gold-bright);
+  border-style:solid;
+  opacity:0.5;
+}
+.rune-corner-tl { top:0; left:0;  border-width:2px 0 0 2px; }
+.rune-corner-tr { top:0; right:0; border-width:2px 2px 0 0; }
+.rune-corner-bl { bottom:0; left:0;  border-width:0 0 2px 2px; }
+.rune-corner-br { bottom:0; right:0; border-width:0 2px 2px 0; }
+
+/* ============================================================
+   RUNES MODE — GOW-style horizontal divider
+   ============================================================ */
+.gow-divider {
+  display:flex; align-items:center; gap:0.75rem;
+  margin:0.5rem 0;
+}
+.gow-divider::before,
+.gow-divider::after {
+  content:''; flex:1; height:1px;
+  background:linear-gradient(to right, transparent, rgba(200,169,110,0.4), transparent);
+}
+.gow-divider-icon {
+  color:var(--gold-bright); font-size:0.7rem; opacity:0.7;
+}
+
+/* ============================================================
+   RUNES MODE — Stat bars (Elden Ring level up)
+   ============================================================ */
+.stat-bar-track {
+  width:100%; height:3px;
+  background:var(--stat-bar-bg, rgba(255,255,255,0.06));
+  position:relative; overflow:hidden;
+}
+.stat-bar-fill {
+  height:100%;
+  background:var(--stat-bar-fill, linear-gradient(90deg,#8B6914,#C8A96E));
+  animation:statFill 1.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+/* ============================================================
+   RUNES MODE — Menu row style (GOW options list)
+   ============================================================ */
+.rune-menu-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0.7rem 1rem;
+  border-bottom:1px solid var(--menu-divider, rgba(200,169,110,0.2));
+  transition:all 0.2s;
+  cursor:default;
+  position:relative;
+}
+.rune-menu-row::before {
+  content:''; position:absolute; left:0; top:0; bottom:0;
+  width:2px;
+  background:var(--rune-ember, #E05A1A);
+  transform:scaleY(0); transform-origin:bottom;
+  transition:transform 0.25s ease;
+}
+.rune-menu-row:hover::before { transform:scaleY(1); }
+.rune-menu-row:hover { background:rgba(200,169,110,0.05); padding-left:1.4rem; }
